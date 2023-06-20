@@ -1,1 +1,0 @@
-import DayCard from './DayCard.jsx'
