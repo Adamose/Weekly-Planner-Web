@@ -1,0 +1,36 @@
+body {
+    margin: 0px;
+    background: rgb(186, 144, 198);
+    background: linear-gradient(180deg, rgb(186, 144, 198) 0%, rgb(232, 160, 191) 60%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+    margin: 2%;
+    color: rgb(253, 244, 245);
+}
+
+h1 {
+    margin: 0px;
+}
+
+header span {
+    font-size: large;
+    margin: 1%;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
