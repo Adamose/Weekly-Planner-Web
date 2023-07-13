@@ -1,36 +1,115 @@
 body {
     margin: 0px;
     background: rgb(186, 144, 198);
-    background: linear-gradient(180deg, rgb(186, 144, 198) 0%, rgb(232, 160, 191) 60%);
+    background: linear-gradient(180deg, var(--purple) 10%, var(--lavender) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
     text-rendering: optimizeLegibility;
+    --lavender: #e2caf7;
+    --white: #fdf2fa;
+    --purple: #a93dc7;
 }
 
 header {
     display: flex;
+    justify-content: center;
+    height: 20vh;
+    min-height: 60px;
+}
+
+.headerContainer {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 25px;
-    border-color: black;
-    border-style: solid;
-    border-width: 5px;
-    margin: 2%;
-    color: rgb(253, 244, 245);
+    width: 80%;
+    max-width: 1300px;
 }
 
-h1 {
-    margin: 0px;
+.headerTitle {
+    display: flex;
+    align-items: center;
+    color: var(--white);
 }
 
-header span {
+.headerTitle img {
+    width: 48px;
+    image-rendering: pixelated;
+    margin-right: 15px;
+}
+
+.headerNav {
+    display: flex;
+    align-items: center;
+}
+
+.navButton {
+    margin: 5px;
+    font-size: x-large;
+    border: none;
+    background: none;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.navButton::after {
+    content: "";
+    width: 0%;
+    height: 4px;
+    background: black;
+    display: block;
+    transition: 0.5s;
+}
+
+.navButton:hover {
+    background: #00000021;
+    border-radius: 8px;
+    transition: 1s;
+}
+
+.navButton:hover::after {
+    width: 100%;
+}
+
+.headerButton {
+    background-color: var(--white);
+    color: var(--purple);
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.headerButton:hover {
+    background-color: var(--lavender) !important;
+    color: var(--purple) !important;
+}
+
+.accountMenu {
+    background-color: var(--lavender) !important;
     font-size: large;
-    margin: 1%;
+    font-weight: bold;
+}
+
+.ant-modal-content {
+    background-color: var(--lavender) !important;
+}
+
+.ant-modal-mask {
+    background-color: rgba(0, 0, 0, 0.66) !important;
 }
 
 main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    padding: 5px;
+    margin: 10px;
+    margin-bottom: 25px;
+    border-radius: 25px;
+    background-color: var(--white);
 }

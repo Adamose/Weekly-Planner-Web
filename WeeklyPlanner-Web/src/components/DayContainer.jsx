@@ -21,4 +21,4 @@ function DayContainer() {
     );
 }
 
-export default DayContainer;
+export default DayContainer

@@ -4,4 +4,4 @@ function TasksCard() {
     );
 }
 
-export default TasksCard;
+export default TasksCard
