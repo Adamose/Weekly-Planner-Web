@@ -1,7 +1,7 @@
 body {
     margin: 0px;
     background: rgb(186, 144, 198);
-    background: linear-gradient(180deg, var(--purple) 10%, var(--lavender) 100%);
+    background: linear-gradient(180deg, var(--purple) 5%, var(--lavender) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
@@ -64,7 +64,7 @@ header {
 .navButton:hover {
     background: #00000021;
     border-radius: 8px;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .navButton:hover::after {
@@ -97,6 +97,15 @@ header {
     background-color: rgba(0, 0, 0, 0.66) !important;
 }
 
+.ant-message-notice-content {
+    background-color: var(--white) !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+.anticon-info-circle {
+    color: var(--purple) !important;
+}
+
 main {
     display: flex;
     flex-direction: row;
@@ -105,8 +114,8 @@ main {
 }
 
 .card {
-    width: 300px;
-    height: 400px;
+    width: 230px;
+    height: 320px;
     padding: 5px;
     margin: 10px;
     margin-bottom: 25px;

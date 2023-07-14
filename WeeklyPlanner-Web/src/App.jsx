@@ -1,6 +1,7 @@
-import DayContainer from './components/DayContainer.jsx'
-import Header from './components/header/Header.jsx'
-import { ConfigProvider } from 'antd'
+import './AntdWarnings.js';
+import DayContainer from './components/DayContainer.jsx';
+import Header from './components/header/Header.jsx';
+import { ConfigProvider } from 'antd';
 
 function App() {
     return (
@@ -19,4 +20,4 @@ function App() {
     );
 }
 
-export default App
+export default App;

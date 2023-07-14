@@ -8,4 +8,4 @@ function DayCard() {
     );
 }
 
-export default DayCard
+export default DayCard;

@@ -1,14 +1,13 @@
-import NavButton from './NavButton.jsx'
 import HeaderButton from './HeaderButton.jsx';
 
 function Nav() {
     return (
         <nav className="headerNav">
-            <NavButton text="Planner"/>
-            <NavButton text="Tasks"/>
+            <button className="navButton">Planner</button>
+            <button className="navButton">Tasks</button>
             <HeaderButton />
         </nav>
     );
 }
 
-export default Nav
+export default Nav;

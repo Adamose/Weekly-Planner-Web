@@ -1,4 +1,4 @@
-import Nav from './Nav.jsx'
+import Nav from './Nav.jsx';
 import HeaderTitle from './HeaderTitle.jsx';
 
 function Header() {
@@ -12,4 +12,4 @@ function Header() {
     );
 }
 
-export default Header
+export default Header;

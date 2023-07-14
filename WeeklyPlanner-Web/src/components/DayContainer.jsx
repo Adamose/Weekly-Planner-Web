@@ -1,4 +1,4 @@
-import DayCard from './DayCard.jsx'
+import DayCard from './DayCard.jsx';
 
 function DayContainer() {
     return (
@@ -21,4 +21,4 @@ function DayContainer() {
     );
 }
 
-export default DayContainer
+export default DayContainer;

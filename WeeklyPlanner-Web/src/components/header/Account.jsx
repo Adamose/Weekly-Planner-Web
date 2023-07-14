@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Modal, Menu, Input, Space, Alert } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons"
+import { Modal, Menu, Input, Space, Alert, message } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
-function Account({ showAccount, setShowAccount, setText }) {
+function Account({ showAccount, setShowAccount, setButtonText }) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -12,12 +12,16 @@ function Account({ showAccount, setShowAccount, setText }) {
     const [selectedItem, setSelectedItem] = useState("login");
     const menuItems = [{ label: "Log-In", key: "login" }, { label: "Sign-Up", key: "signup" }];
 
+    //Handler for changing request type (login / signup)
     const selectItem = (item) => { 
         setSelectedItem(item.key);
         setShowError(false);
         setError("");
+        setUsername("");
+        setPassword("");
     };
 
+    //Handler for closing account modal
     const closeModal = () => {
         if (!loading) {
             setShowAccount(false);
@@ -25,14 +29,34 @@ function Account({ showAccount, setShowAccount, setText }) {
             setError("");
             setUsername("");
             setPassword("");
+            setLoading(false);
+            setSelectedItem("login");
         }
     }
 
     //Function to make request to server
     const submit = async () => {
-        setLoading(true);
+        //Validating input
+        if (username.length == 0) {
+            setError("Please enter an username");
+            setShowError(true);
+            return;
+        }
 
-        //Waiting for submit animation
+        if (password.length == 0) {
+            setError("Please enter a password");
+            setShowError(true);
+            return;
+        }
+
+        if (username.indexOf(' ') >= 0 ||  password.indexOf(' ') >= 0) {
+            setError("Username and password can not contain spaces");
+            setShowError(true);
+            return;
+        }
+
+        //Waiting for loading animation
+        setLoading(true);
         await new Promise(r => setTimeout(r, 500));
 
         //Making request
@@ -48,15 +72,28 @@ function Account({ showAccount, setShowAccount, setText }) {
             setError(await response.text());
             setShowError(true);
         } else {
+            //Store user info in local storage
             localStorage.setItem("JWT", "Bearer " + await response.text());
+            localStorage.setItem("USERNAME", username);
             localStorage.setItem("DATE", Date.now());
+
+            //Update state
             setLoading(false);
-            setText(username);
+            setButtonText("Log-Out");
             setUsername("");
             setPassword("");
             setError("");
-            setShowAccount(false);
             setShowError(false);
+            setShowAccount(false);
+            
+            //Waiting for closing animation
+            await new Promise(r => setTimeout(r, 250));
+
+            //Checking which message to show
+            if (selectedItem === "login")
+                message.info("Welcome back " + username);
+            else
+                message.info("Welcome " + username);
         }
     }
 
@@ -103,4 +140,4 @@ function Account({ showAccount, setShowAccount, setText }) {
     );
 }
 
-export default Account
+export default Account;
