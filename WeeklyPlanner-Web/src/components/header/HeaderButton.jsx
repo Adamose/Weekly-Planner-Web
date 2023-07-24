@@ -1,13 +1,13 @@
-import { useState, useLayoutEffect } from 'react';
-import { Button, message } from 'antd';
-import Account from './Account.jsx';
+import Account from "./Account.jsx";
+import { Button, message } from "antd";
+import { useState, useLayoutEffect } from "react";
 
 function HeaderButton() {
 
     const [buttonText, setButtonText] = useState("Log-In / Sign-Up");
     const [showAccount, setShowAccount] = useState(false);
 
-    //Checking which user is already logged in
+    //Checking if a user is already logged in
     useLayoutEffect(() => {
         if (localStorage.getItem("USERNAME")) {
             message.info("Welcome back " + localStorage.getItem("USERNAME"));

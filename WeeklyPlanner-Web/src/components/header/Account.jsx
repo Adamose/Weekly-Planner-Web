@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { Context } from "../../App.jsx" 
 import { Modal, Menu, Input, Space, Alert, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useState, useContext } from "react";
 
 function Account({ showAccount, setShowAccount, setButtonText }) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const [showError, setShowError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [selectedItem, setSelectedItem] = useState("login");
     const menuItems = [{ label: "Log-In", key: "login" }, { label: "Sign-Up", key: "signup" }];
+    const { fetchTasks } = useContext(Context);
 
     //Handler for changing request type (login / signup)
     const selectItem = (item) => { 
         setSelectedItem(item.key);
         setShowError(false);
-        setError("");
+        setErrorMessage("");
         setUsername("");
         setPassword("");
     };
@@ -26,7 +28,7 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
         if (!loading) {
             setShowAccount(false);
             setShowError(false);
-            setError("");
+            setErrorMessage("");
             setUsername("");
             setPassword("");
             setLoading(false);
@@ -38,19 +40,19 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
     const submit = async () => {
         //Validating input
         if (username.length == 0) {
-            setError("Please enter an username");
+            setErrorMessage("Please enter an username");
             setShowError(true);
             return;
         }
 
         if (password.length == 0) {
-            setError("Please enter a password");
+            setErrorMessage("Please enter a password");
             setShowError(true);
             return;
         }
 
         if (username.indexOf(' ') >= 0 ||  password.indexOf(' ') >= 0) {
-            setError("Username and password can not contain spaces");
+            setErrorMessage("Username and password can not contain spaces");
             setShowError(true);
             return;
         }
@@ -69,7 +71,7 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
         //Checking if response is bad
         if (response.status !== 200) {
             setLoading(false);
-            setError(await response.text());
+            setErrorMessage(await response.text());
             setShowError(true);
         } else {
             //Store user info in local storage
@@ -82,18 +84,20 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
             setButtonText("Log-Out");
             setUsername("");
             setPassword("");
-            setError("");
+            setErrorMessage("");
             setShowError(false);
             setShowAccount(false);
-            
+
             //Waiting for closing animation
             await new Promise(r => setTimeout(r, 250));
 
-            //Checking which message to show
-            if (selectedItem === "login")
+            //Checking which message to show and if to fetchTasks
+            if (selectedItem === "login") {
                 message.info("Welcome back " + username);
-            else
+                fetchTasks();
+            } else {
                 message.info("Welcome " + username);
+            }
         }
     }
 
@@ -134,7 +138,7 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
                   onChange={ e => setPassword(e.target.value) }
                 />
 
-                {showError && <Alert message={error} type="error" showIcon />}
+                {showError && <Alert message={errorMessage} type="error" showIcon />}
             </Space>
         </Modal>
     );
