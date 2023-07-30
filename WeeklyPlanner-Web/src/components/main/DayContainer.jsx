@@ -1,27 +1,27 @@
 import DayCard from "./DayCard.jsx";
-import { useState } from "react";
+import { useRef } from "react";
 
 function DayContainer() {
 
-    //Function to generate date strings for the 14 next days
+    //Function to generate dates for the 14 next days
     const generateDates = () => {
         let dates = [];
         let date = new Date();
-        dates.push(`${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`);
+        dates.push(new Date(date));
 
         for (let i = 0; i < 13; i++) {
             date.setDate(date.getDate() + 1);
-            dates.push(`${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`);
+            dates.push(new Date(date));
         }
 
         return dates;
     };
 
-    const [dates] = useState(generateDates());
+    const dates = useRef(generateDates());
 
     return (
         <>
-            {dates.map( (date, index) => <DayCard date={date} key={index} /> )}
+            {dates.current.map( (date, index) => <DayCard dateObject={date} key={index} /> )}
         </>
     );
 }

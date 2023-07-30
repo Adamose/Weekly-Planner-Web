@@ -1,34 +1,31 @@
-import { Context } from "../../App.jsx"
-import { Space, Skeleton } from "antd";
-import { useContext } from "react";
+import Task from "./Task.jsx";
+import Placeholder from "./Placeholder.jsx";
+import { Context } from "../../TasksContext.jsx"
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { useRef, useContext } from "react";
 
-function DayCard({ date }) {
+const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    const { tasksLoading } = useContext(Context);
+function DayCard({ dateObject }) {
 
-    //Placeholder content for card when fetching tasks from database
-    const skeleton = (
-        <Space direction="vertical">
-            <Space>
-                <Skeleton.Avatar active={true} size={"small"}  /> 
-                <Skeleton.Input active={true} size={"small"}  />
-            </Space>
-            <Space>
-                <Skeleton.Avatar active={true} size={"small"}  /> 
-                <Skeleton.Input active={true} size={"small"}  />
-            </Space>
-            <Space>
-                <Skeleton.Avatar active={true} size={"small"}  /> 
-                <Skeleton.Input active={true} size={"small"}  />
-            </Space>
-        </Space>
-    );
+    const { tasks, deleteTasks, tasksLoading, openTaskModal } = useContext(Context);
+    const dateString = useRef(`${dateObject.getMonth() + 1}-${dateObject.getDate()}-${dateObject.getFullYear()}`);
+    const cardDate = `${weekdays[dateObject.getDay()]} ${dateObject.getDate()}`;
 
     return (
         <div className="card">
             <div className="card-body">
-                <p className="title">{date}</p>
-                { tasksLoading && skeleton }
+                <div className="card-title">
+                    <MinusOutlined className="card-title-icon" onClick={() => deleteTasks(dateString.current)} />
+                    <h3 className="card-date">{cardDate}</h3>
+                    <PlusOutlined className="card-title-icon" onClick={() => openTaskModal(true, dateObject)} />
+                </div>
+                
+                {tasksLoading && <Placeholder />}
+
+                <ul>
+                    {Object.keys(tasks).map( taskId => (tasks[taskId].date === dateString.current) && <Task key={taskId} task={tasks[taskId]} taskId={taskId} /> )}
+                </ul>
             </div>
         </div>
     );

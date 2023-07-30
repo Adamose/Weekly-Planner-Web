@@ -8,4 +8,4 @@ if (localStorage.getItem("DATE") !== null) {
         localStorage.clear();
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />,);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);

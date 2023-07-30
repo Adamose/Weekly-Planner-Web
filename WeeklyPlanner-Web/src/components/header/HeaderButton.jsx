@@ -1,11 +1,13 @@
-import Account from "./Account.jsx";
+import { Context } from "../../TasksContext.jsx"
+import AccountModal from "./AccountModal.jsx";
 import { Button, message } from "antd";
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useContext } from "react";
 
 function HeaderButton() {
 
     const [buttonText, setButtonText] = useState("Log-In / Sign-Up");
-    const [showAccount, setShowAccount] = useState(false);
+    const [showAccountModal, setShowAccountModal] = useState(false);
+    const { setTasks } = useContext(Context);
 
     //Checking if a user is already logged in
     useLayoutEffect(() => {
@@ -21,9 +23,10 @@ function HeaderButton() {
     const handleClick = () => {
         if (buttonText !== "Log-Out") {
             //Opening account modal
-            setShowAccount(true);
+            setShowAccountModal(true);
         } else {
             //Logging user out
+            setTasks({});
             setButtonText("Log-In / Sign-Up");
             message.info("See you soon " + localStorage.getItem("USERNAME"));
             localStorage.clear();
@@ -32,8 +35,8 @@ function HeaderButton() {
 
     return (
         <>
-            <Button className="headerButton" type="primary" size="large" onClick={handleClick}>{buttonText}</Button>
-            <Account showAccount={showAccount} setShowAccount={setShowAccount} setButtonText={setButtonText} />
+            <Button className="header-button" type="primary" size="large" onClick={handleClick}>{buttonText}</Button>
+            <AccountModal showAccountModal={showAccountModal} setShowAccountModal={setShowAccountModal} setButtonText={setButtonText} />
         </>
     );
 }

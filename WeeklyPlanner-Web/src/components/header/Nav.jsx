@@ -2,9 +2,9 @@ import HeaderButton from './HeaderButton.jsx';
 
 function Nav() {
     return (
-        <nav className="headerNav">
-            <button className="navButton">Planner</button>
-            <button className="navButton">Tasks</button>
+        <nav className="header-nav">
+            <button className="nav-button">Planner</button>
+            <button className="nav-button">Tasks</button>
             <HeaderButton />
         </nav>
     );

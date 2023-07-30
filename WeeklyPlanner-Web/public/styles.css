@@ -18,7 +18,7 @@ header {
     min-height: 60px;
 }
 
-.headerContainer {
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,64 +26,65 @@ header {
     max-width: 1300px;
 }
 
-.headerTitle {
+.header-title {
     display: flex;
     align-items: center;
     color: var(--white);
 }
 
-.headerTitle img {
+.header-title img {
     width: 48px;
     image-rendering: pixelated;
     margin-right: 15px;
 }
 
-.headerNav {
+.header-nav {
     display: flex;
     align-items: center;
 }
 
-.navButton {
+.nav-button {
     margin: 5px;
     font-size: x-large;
-    border: none;
     background: none;
     font-weight: 600;
+    transition: 0.5s;
+    border-style: none;
+    border-radius: 8px;
     color: var(--white);
 }
 
-.navButton::after {
+.nav-button::after {
     content: "";
     width: 0%;
     height: 4px;
     background: black;
     display: block;
-    transition: 0.5s;
+    transition: 0.4s;
 }
 
-.navButton:hover {
+.nav-button:hover {
     background: #00000021;
     border-radius: 8px;
-    transition: 0.5s;
 }
 
-.navButton:hover::after {
+.nav-button:hover::after {
     width: 100%;
 }
 
-.headerButton {
+.header-button {
     background-color: var(--white);
     color: var(--purple);
     font-weight: bold;
     margin-left: 5px;
 }
 
-.headerButton:hover {
+.header-button:hover {
     background-color: var(--lavender) !important;
     color: var(--purple) !important;
 }
 
-.accountMenu {
+.modal-menu {
     background-color: var(--lavender) !important;
     font-size: large;
     font-weight: bold;
@@ -106,6 +107,18 @@ header {
     color: var(--purple) !important;
 }
 
+.anticon-calendar svg {
+    color: black;
+    width: 16px;
+    height: 16px;
+}
+
+.ant-picker-suffix {
+    order: -1;
+    margin-inline-start: 0 !important;
+    margin-inline-end: 4px;
+}
+
 main {
     display: flex;
     flex-direction: row;
@@ -116,9 +129,73 @@ main {
 .card {
     width: 230px;
     height: 320px;
-    padding: 5px;
+    padding: 3px;
     margin: 10px;
     margin-bottom: 25px;
     border-radius: 25px;
+    transition: all .25s;
+    background-image: linear-gradient(135deg,#5B42F3,#9c19fa);
+}
+
+.card:hover {
+    box-shadow: 0px 0px 25px purple;
+    transform: scale(1.05);
+}
+
+.card-body {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border-radius: 22px;
+    box-sizing: border-box;
     background-color: var(--white);
+}
+
+.card-title {
+    display: flex;
+    justify-content: center;
+}
+
+.card-title-icon {
+    font-size: large;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s linear;
+}
+
+.card:hover .card-title-icon {
+    visibility: visible;
+    opacity: 1;
+}
+
+.card-title-icon:hover {
+    color: var(--purple);
+}
+
+.card-date {
+    color: var(--purple);
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+ul {
+    padding: 0;
+    font-size: large;
+    list-style: none;
+}
+
+.task-item:hover {
+    color: var(--purple);
+}
+
+.task-icon {
+    color: black;
+    height: 22px;
+}
+
+.task-icon:hover {
+    color: var(--purple);
 }

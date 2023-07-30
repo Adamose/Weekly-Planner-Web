@@ -4,7 +4,7 @@ import HeaderTitle from './HeaderTitle.jsx';
 function Header() {
     return (
         <header>
-            <div className="headerContainer">
+            <div className="header-container">
                 <HeaderTitle />
                 <Nav />
             </div>

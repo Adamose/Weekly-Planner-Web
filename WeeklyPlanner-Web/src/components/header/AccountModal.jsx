@@ -1,9 +1,9 @@
-import { Context } from "../../App.jsx" 
+import { Context } from "../../TasksContext.jsx" 
 import { Modal, Menu, Input, Space, Alert, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useState, useContext } from "react";
 
-function Account({ showAccount, setShowAccount, setButtonText }) {
+function AccountModal({ showAccountModal, setShowAccountModal, setButtonText }) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -26,7 +26,7 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
     //Handler for closing account modal
     const closeModal = () => {
         if (!loading) {
-            setShowAccount(false);
+            setShowAccountModal(false);
             setShowError(false);
             setErrorMessage("");
             setUsername("");
@@ -34,18 +34,19 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
             setLoading(false);
             setSelectedItem("login");
         }
-    }
+    };
 
     //Function to make request to server
     const submit = async () => {
+        
         //Validating input
-        if (username.length == 0) {
+        if (username.length === 0) {
             setErrorMessage("Please enter an username");
             setShowError(true);
             return;
         }
 
-        if (password.length == 0) {
+        if (password.length === 0) {
             setErrorMessage("Please enter a password");
             setShowError(true);
             return;
@@ -80,13 +81,8 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
             localStorage.setItem("DATE", Date.now());
 
             //Update state
-            setLoading(false);
             setButtonText("Log-Out");
-            setUsername("");
-            setPassword("");
-            setErrorMessage("");
-            setShowError(false);
-            setShowAccount(false);
+            closeModal();
 
             //Waiting for closing animation
             await new Promise(r => setTimeout(r, 250));
@@ -99,21 +95,20 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
                 message.info("Welcome " + username);
             }
         }
-    }
+    };
 
     return (
         <Modal
-            className="accountModal"
             okText="Submit"
             centered="true"
-            open={showAccount}
+            open={showAccountModal}
             confirmLoading={loading}
             onOk={submit}
             onCancel={closeModal}
         >
             <Space direction="vertical" size="middle" style={{ width: '100%' }}>
                 <Menu
-                  className="accountMenu"
+                  className="modal-menu"
                   mode="horizontal"
                   items={menuItems}
                   defaultSelectedKeys={[selectedItem]}
@@ -121,7 +116,6 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
                 />
 
                 <Input
-                  className="accountInput"
                   size="large"
                   placeholder="Enter your username"
                   prefix={<UserOutlined />}
@@ -130,7 +124,6 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
                 />
 
                 <Input.Password
-                  className="accountInput"
                   size="large"
                   placeholder="Enter your password"
                   prefix={<LockOutlined />}
@@ -144,4 +137,4 @@ function Account({ showAccount, setShowAccount, setButtonText }) {
     );
 }
 
-export default Account;
+export default AccountModal;
