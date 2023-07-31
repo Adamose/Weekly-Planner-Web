@@ -1,4 +1,4 @@
-import { Context } from "../../TasksContext.jsx" 
+import { Context } from "../../TasksContext.jsx"
 import { Modal, Menu, Input, Space, Alert, DatePicker } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { useState, useContext, useEffect } from "react";
@@ -12,7 +12,7 @@ function TaskModal() {
     const [errorMessage, setErrorMessage] = useState("");
     const [showError, setShowError] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { tasks, setTasks, showTaskModal, openTaskModal, taskModalDate } = useContext(Context);
+    const { tasks, setTasks, showTaskModal, openTaskModal, taskModalDate, notifyFailedRequest } = useContext(Context);
 
     //Handler for closing task modal
     const closeModal = () => {
@@ -50,25 +50,31 @@ function TaskModal() {
         setLoading(true);
         await new Promise(r => setTimeout(r, 500));
 
-        //Making request
-        const response = await fetch(`https://api-weeklyplanner.adamose.com/task?date=${taskDateString}&content=${encodeURIComponent(taskContent)}`, {
-            "method": "POST",
-            "headers": { "Authorization": localStorage.getItem("JWT"), "x-api-key": "ObYIVP54zf35RbJsVO1i785wLdLTiswQ2JU3MAwu" }
-        });
+        try {
 
-        //Checking if response is bad
-        if (response.status !== 200) {
-            setLoading(false);
-            setErrorMessage("Failed to add task because of database error");
-            setShowError(true);
-        } else {
+            //Making request
+            const response = await fetch(`https://api-weeklyplanner.adamose.com/task?date=${taskDateString}&content=${encodeURIComponent(taskContent)}`, {
+                "method": "POST",
+                "headers": { "Authorization": localStorage.getItem("JWT"), "x-api-key": "ObYIVP54zf35RbJsVO1i785wLdLTiswQ2JU3MAwu" }
+            });
 
-            //Adding task to UI
-            const updatedTasks = {...tasks};
-            updatedTasks[await response.text()] = { content: taskContent, date: taskDateString };
-            setTasks(updatedTasks);
+            //Checking if response is bad
+            if (response.status !== 200) {
+                setLoading(false);
+                setErrorMessage("Failed to add task because of database error");
+                setShowError(true);
+            } else {
 
-            closeModal();
+                //Adding task to UI
+                const updatedTasks = { ...tasks };
+                updatedTasks[await response.text()] = { content: taskContent, date: taskDateString };
+                setTasks(updatedTasks);
+
+                closeModal();
+            }
+
+        } catch (error) {
+            notifyFailedRequest();
         }
     };
 
@@ -94,29 +100,29 @@ function TaskModal() {
         >
             <Space direction="vertical" size="middle" style={{ width: '100%' }}>
                 <Menu
-                  className="modal-menu"
-                  mode="horizontal"
-                  items={[{ label: "Add task", key: "add-task" }]}
-                  defaultSelectedKeys={["add-task"]}
+                    className="modal-menu"
+                    mode="horizontal"
+                    items={[{ label: "Add task", key: "add-task" }]}
+                    defaultSelectedKeys={["add-task"]}
                 />
 
                 <Input
-                  size="large"
-                  placeholder="Enter task's content"
-                  prefix={<EditOutlined />}
-                  value={taskContent}
-                  onChange={ e => setTaskContent(e.target.value) }
+                    size="large"
+                    placeholder="Enter task's content"
+                    prefix={<EditOutlined />}
+                    value={taskContent}
+                    onChange={e => setTaskContent(e.target.value)}
                 />
 
                 <DatePicker
-                  onChange={ (date, dateString) => { setSelectedDate(date); setTaskDateString(dateString) } }
-                  allowClear={false}
-                  showToday={false}
-                  format="M-D-YYYY"
-                  size="large"
-                  style={{ width: '100%' }}
-                  placeholder="Enter task's date"
-                  value={selectedDate}
+                    onChange={(date, dateString) => { setSelectedDate(date); setTaskDateString(dateString) }}
+                    allowClear={false}
+                    showToday={false}
+                    format="M-D-YYYY"
+                    size="large"
+                    style={{ width: '100%' }}
+                    placeholder="Enter task's date"
+                    value={selectedDate}
                 />
 
                 {showError && <Alert message={errorMessage} type="error" showIcon />}

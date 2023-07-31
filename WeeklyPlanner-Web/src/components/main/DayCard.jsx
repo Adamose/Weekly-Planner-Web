@@ -5,12 +5,13 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { useRef, useContext } from "react";
 
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function DayCard({ dateObject }) {
 
     const { tasks, deleteTasks, tasksLoading, openTaskModal } = useContext(Context);
     const dateString = useRef(`${dateObject.getMonth() + 1}-${dateObject.getDate()}-${dateObject.getFullYear()}`);
-    const cardDate = `${weekdays[dateObject.getDay()]} ${dateObject.getDate()}`;
+    const cardDate = `${weekdays[dateObject.getDay()]} ${dateObject.getDate()}/${dateObject.getMonth() + 1}`;
 
     return (
         <div className="card">
@@ -23,7 +24,7 @@ function DayCard({ dateObject }) {
                 
                 {tasksLoading && <Placeholder />}
 
-                <ul>
+                <ul className="card-list">
                     {Object.keys(tasks).map( taskId => (tasks[taskId].date === dateString.current) && <Task key={taskId} task={tasks[taskId]} taskId={taskId} /> )}
                 </ul>
             </div>
