@@ -1,4 +1,4 @@
-import "./AntdWarnings.js";
+import "./CustomConsole.js";
 import Main from "./components/main/Main.jsx";
 import Header from "./components/header/Header.jsx";
 import TasksContext from "./TasksContext.jsx";
