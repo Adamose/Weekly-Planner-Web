@@ -134,6 +134,7 @@ main {
     margin-bottom: 25px;
     border-radius: 25px;
     transition: all .25s;
+    overflow: hidden;
     background-image: linear-gradient(135deg, #5B42F3, #9c19fa);
 }
 
