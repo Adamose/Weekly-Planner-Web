@@ -199,13 +199,21 @@ main {
     color: var(--purple);
 }
 
-.task-icon {
+.task-item:hover .task-icon {
+    fill: none;
     color: black;
-    height: 22px;
+}
+
+.task-icon {
+    fill: var(--purple);
+    color: transparent;
+    height: 15px;
+    width: 15px;
+    display: block;
 }
 
 .task-icon:hover {
-    color: var(--purple);
+    color: var(--purple) !important;
 }
 
 .task-content {
@@ -213,10 +221,6 @@ main {
     word-break: break-word;
 }
 
-
-
-
-/* custom scrollbar */
 ::-webkit-scrollbar {
     width: 20px;
 }
