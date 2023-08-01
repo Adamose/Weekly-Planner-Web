@@ -20,9 +20,9 @@ function DayContainer() {
     const dates = useRef(generateDates());
 
     return (
-        <>
+        <section className="planner-section">
             {dates.current.map( (date, index) => <DayCard dateObject={date} key={index} /> )}
-        </>
+        </section>
     );
 }
 

@@ -1,6 +1,6 @@
-import Task from "./Task.jsx";
+import Task from "../Task.jsx";
 import Placeholder from "./Placeholder.jsx";
-import { Context } from "../../TasksContext.jsx"
+import { Context } from "../../../GlobalContext.jsx"
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { useRef, useContext } from "react";
 

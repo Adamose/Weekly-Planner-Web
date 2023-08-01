@@ -1,4 +1,4 @@
-import { Context } from "../../TasksContext.jsx"
+import { Context } from "../../GlobalContext.jsx"
 import { useContext } from "react";
 import { Space } from "antd";
 

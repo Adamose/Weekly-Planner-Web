@@ -1,4 +1,4 @@
-import { Context } from "../../TasksContext.jsx"
+import { Context } from "../../GlobalContext.jsx"
 import AccountModal from "./AccountModal.jsx";
 import { Button, message } from "antd";
 import { useState, useLayoutEffect, useContext } from "react";

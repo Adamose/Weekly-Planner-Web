@@ -3,9 +3,9 @@ import { message, notification } from "antd";
 
 export const Context = createContext();
 
-function TasksContext({ children }) {
+function GlobalContext({ children }) {
 
-    //Global state for tasks storage
+    //Global state
     const [tasks, setTasks] = useState({});
     const [tasksLoading, setTasksLoading] = useState(false);
     const [showTaskModal, setShowTaskModal] = useState(false);
@@ -144,4 +144,4 @@ function TasksContext({ children }) {
     );
 }
 
-export default TasksContext;
+export default GlobalContext;

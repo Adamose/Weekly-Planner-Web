@@ -1,4 +1,4 @@
-import DayContainer from "./DayContainer.jsx";
+import DayContainer from "./planner-section/DayContainer.jsx";
 import TaskModal from "./TaskModal.jsx";
 
 function Task() {

@@ -1,4 +1,4 @@
-import { Context } from "../../TasksContext.jsx"
+import { Context } from "../../GlobalContext.jsx"
 import { Modal, Menu, Input, Space, Alert, DatePicker } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { useState, useContext, useEffect } from "react";

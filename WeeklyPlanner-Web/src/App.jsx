@@ -1,7 +1,7 @@
 import "./CustomConsole.js";
 import Main from "./components/main/Main.jsx";
 import Header from "./components/header/Header.jsx";
-import TasksContext from "./TasksContext.jsx";
+import GlobalContext from "./GlobalContext.jsx";
 import { ConfigProvider } from "antd";
 
 function App() {
@@ -15,10 +15,10 @@ function App() {
             }
           }}
         >
-            <TasksContext>
+            <GlobalContext>
                 <Header />
                 <Main />
-            </TasksContext>
+            </GlobalContext>
         </ConfigProvider>
     );
 }
