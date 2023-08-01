@@ -10,6 +10,7 @@ function GlobalContext({ children }) {
     const [tasksLoading, setTasksLoading] = useState(false);
     const [showTaskModal, setShowTaskModal] = useState(false);
     const [taskModalDate, setTaskModalDate] = useState(undefined);
+    const [isPlannerOpen, setIsPlannerOpen] = useState(true);
 
     //Global function to open add task modal, optional initial date argument
     const openTaskModal = (boolean, date) => {
@@ -137,8 +138,13 @@ function GlobalContext({ children }) {
     //Fetching tasks on initial load
     useEffect(() => { fetchTasks() }, []);
 
+    const exports = {
+        tasks, tasksLoading, setTasks, fetchTasks, deleteTask, deleteTasks, showTaskModal,
+        openTaskModal, taskModalDate, notifyFailedRequest, isPlannerOpen, setIsPlannerOpen
+    };
+
     return (
-        <Context.Provider value={{ tasks, tasksLoading, setTasks, fetchTasks, deleteTask, deleteTasks, showTaskModal, openTaskModal, taskModalDate, notifyFailedRequest }}>
+        <Context.Provider value={exports}>
             {children}
         </Context.Provider>
     );

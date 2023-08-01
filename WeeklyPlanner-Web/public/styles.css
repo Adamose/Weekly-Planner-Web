@@ -141,10 +141,15 @@ header {
 }
 
 .planner-section {
+    position: absolute;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.tasks-section {
+    position: absolute;
 }
 
 .card {
@@ -242,6 +247,16 @@ header {
 .task-content {
     font-weight: bold;
     word-break: break-word;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
 }
 
 ::-webkit-scrollbar {
