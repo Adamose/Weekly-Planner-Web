@@ -131,6 +131,15 @@ header {
     height: 20px !important;
 }
 
+.ant-picker {
+    width: 100%;
+    cursor: pointer;
+}
+
+.ant-picker-input input {
+    cursor: pointer !important;
+}
+
 main {
     display: flex;
     flex-direction: row;

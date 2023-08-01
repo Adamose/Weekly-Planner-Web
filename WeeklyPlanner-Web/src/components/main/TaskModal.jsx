@@ -120,9 +120,9 @@ function TaskModal() {
                     showToday={false}
                     format="M-D-YYYY"
                     size="large"
-                    style={{ width: '100%' }}
                     placeholder="Enter task's date"
                     value={selectedDate}
+                    inputReadOnly={true}
                 />
 
                 {showError && <Alert message={errorMessage} type="error" showIcon />}
