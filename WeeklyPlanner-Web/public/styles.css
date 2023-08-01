@@ -66,6 +66,7 @@ header {
 .nav-button:hover {
     background: #00000021;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .nav-button:hover::after {
@@ -117,6 +118,17 @@ header {
     order: -1;
     margin-inline-start: 0 !important;
     margin-inline-end: 4px;
+}
+
+.ant-skeleton-avatar-circle {
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: 10px;
+}
+
+.ant-skeleton-input {
+    width: 160px !important;
+    height: 20px !important;
 }
 
 main {
@@ -215,6 +227,7 @@ main {
 
 .task-icon:hover {
     color: var(--purple) !important;
+    cursor: pointer;
 }
 
 .task-content {

@@ -8,7 +8,7 @@ function Placeholder() {
 
     for (let i = 0; i < placeholderCount; i++) {
         placeholders.push(
-            <Space key={i}>
+            <Space key={i} size="middle">
                 <Skeleton.Avatar active={true} size={"small"}  /> 
                 <Skeleton.Input active={true} size={"small"}  />
             </Space>
