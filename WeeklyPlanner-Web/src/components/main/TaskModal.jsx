@@ -111,6 +111,7 @@ function TaskModal() {
                     placeholder="Enter task's content"
                     prefix={<EditOutlined />}
                     value={taskContent}
+                    maxLength={50}
                     onChange={e => setTaskContent(e.target.value)}
                 />
 

@@ -126,6 +126,7 @@ function AccountModal({ showAccountModal, setShowAccountModal, setButtonText }) 
                     placeholder="Enter your username"
                     prefix={<UserOutlined />}
                     value={username}
+                    maxLength={20}
                     onChange={e => setUsername(e.target.value)}
                 />
 
@@ -134,6 +135,7 @@ function AccountModal({ showAccountModal, setShowAccountModal, setButtonText }) 
                     placeholder="Enter your password"
                     prefix={<LockOutlined />}
                     value={password}
+                    maxLength={20}
                     onChange={e => setPassword(e.target.value)}
                 />
 
