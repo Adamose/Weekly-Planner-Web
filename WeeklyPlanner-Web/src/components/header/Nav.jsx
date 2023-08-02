@@ -4,12 +4,12 @@ import { useContext } from "react";
 
 function Nav() {
 
-    const { setIsPlannerOpen } = useContext(Context);
+    const { isPlannerOpen, setIsPlannerOpen } = useContext(Context);
 
     return (
         <nav className="header-nav">
-            <button className="nav-button" onClick={() => setIsPlannerOpen(true)}>Planner</button>
-            <button className="nav-button" onClick={() => setIsPlannerOpen(false)}>Tasks</button>
+            <button className={"nav-button" + (isPlannerOpen ? " nav-button-selected" : "")} onClick={() => setIsPlannerOpen(true)}>Planner</button>
+            <button className={"nav-button" + (isPlannerOpen ? "" : " nav-button-selected")} onClick={() => setIsPlannerOpen(false)}>Tasks</button>
             <HeaderButton />
         </nav>
     );

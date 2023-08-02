@@ -1,12 +1,12 @@
-import DayContainer from "./planner-section/DayContainer.jsx";
-import TasksContainer from "./tasks-section/TasksContainer.jsx";
+import PlannerSection from "./planner-section/PlannerSection.jsx";
+import TasksSection from "./tasks-section/TasksSection.jsx";
 import TaskModal from "./TaskModal.jsx";
 
 function Main() {
     return (
         <main>
-            <DayContainer />
-            <TasksContainer />
+            <PlannerSection />
+            <TasksSection />
             <TaskModal />
         </main>
     );

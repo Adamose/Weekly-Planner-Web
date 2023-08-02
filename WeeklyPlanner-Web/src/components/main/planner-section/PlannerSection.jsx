@@ -2,7 +2,7 @@ import { Context } from "../../../GlobalContext.jsx";
 import DayCard from "./DayCard.jsx";
 import { useState, useRef, useContext, useEffect } from "react";
 
-function DayContainer() {
+function PlannerSection() {
 
     //Function to generate dates for the 14 next days
     const generateDates = () => {
@@ -44,4 +44,4 @@ function DayContainer() {
     );
 }
 
-export default DayContainer;
+export default PlannerSection;
