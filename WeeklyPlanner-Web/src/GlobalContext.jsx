@@ -10,7 +10,7 @@ function GlobalContext({ children }) {
     const [tasksLoading, setTasksLoading] = useState(false);
     const [showTaskModal, setShowTaskModal] = useState(false);
     const [taskModalDate, setTaskModalDate] = useState(undefined);
-    const [isPlannerOpen, setIsPlannerOpen] = useState(true);
+    const [isPlannerOpen, setIsPlannerOpen] = useState(false);
 
     //Global function to open add task modal, optional initial date argument
     const openTaskModal = (boolean, date) => {

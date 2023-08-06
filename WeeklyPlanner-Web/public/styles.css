@@ -149,27 +149,33 @@ header {
 }
 
 .tasks-section {
+    width: 100%;
+    height: 80vh;
     position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
-.card {
+.day-card {
     width: 230px;
-    height: 320px;
+    height: 319px;
     padding: 3px;
     margin: 10px;
     margin-bottom: 25px;
     border-radius: 25px;
-    transition: all .25s;
+    transition: transform 0.25s;
     overflow: hidden;
     background-image: linear-gradient(135deg, #5B42F3, #9c19fa);
 }
 
-.card:hover {
+.day-card:hover {
     box-shadow: 0px 0px 25px purple;
     transform: scale(1.05);
 }
 
-.card-body {
+.day-card-body {
     width: 100%;
     height: 100%;
     padding: 5px;
@@ -178,37 +184,36 @@ header {
     background-color: var(--white);
 }
 
-.card-title {
+.day-card-title {
     display: flex;
     justify-content: center;
 }
 
-.card-title-icon {
+.day-card-title-icon {
     font-size: large;
-    visibility: hidden;
     opacity: 0;
-    transition: all 0.3s linear;
+    transition: opacity 0.3s linear;
 }
 
-.card:hover .card-title-icon {
-    visibility: visible;
+.day-card:hover .day-card-title-icon {
     opacity: 1;
 }
 
-.card-title-icon:hover {
+.day-card-title-icon:hover {
     color: var(--purple);
 }
 
-.card-date {
+.day-card-date {
     color: var(--purple);
     font-size: larger;
     font-weight: bold;
     text-align: center;
     margin-left: 20px;
     margin-right: 20px;
+    white-space: pre-line;
 }
 
-.card-list {
+.day-card-list {
     padding: 0;
     font-size: large;
     list-style: none;
@@ -257,6 +262,34 @@ header {
 .fade-out {
     opacity: 0;
     transition: opacity 0.5s ease-in;
+    pointer-events: none;
+}
+
+.tasks-card {
+    width: 40vw;
+    min-width: 230px;
+    height: 73vh;
+    padding: 3px;
+    margin: 10px;
+    margin-bottom: 25px;
+    border-radius: 25px;
+    transition: transform 0.25s;
+    overflow: hidden;
+    background-image: linear-gradient(135deg, #5B42F3, #9c19fa);
+}
+
+.tasks-card:hover {
+    box-shadow: 0px 0px 25px purple;
+    transform: scale(1.03);
+}
+
+.tasks-card-body {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border-radius: 22px;
+    box-sizing: border-box;
+    background-color: var(--white);
 }
 
 ::-webkit-scrollbar {

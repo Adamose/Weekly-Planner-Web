@@ -16,7 +16,7 @@ function Nav() {
             //Waiting for animation to be done before setting boolean to false
             setTimeout(() => {
                 setIsAnimating(false);
-            }, 700);
+            }, 1000);
         }
     };
 
