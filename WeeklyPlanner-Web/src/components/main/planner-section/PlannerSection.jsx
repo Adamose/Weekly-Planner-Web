@@ -2,25 +2,25 @@ import { Context } from "../../../GlobalContext.jsx";
 import DayCard from "./DayCard.jsx";
 import { useState, useRef, useContext, useEffect } from "react";
 
+//Function to generate dates for the 14 next days
+function generateDates(todaysDate) {
+    let dates = [];
+    let date = todaysDate;
+    dates.push(new Date(date));
+
+    for (let i = 0; i < 13; i++) {
+        date.setDate(date.getDate() + 1);
+        dates.push(new Date(date));
+    }
+
+    return dates;
+};
+
 function PlannerSection() {
 
-    //Function to generate dates for the 14 next days
-    const generateDates = () => {
-        let dates = [];
-        let date = new Date();
-        dates.push(new Date(date));
-
-        for (let i = 0; i < 13; i++) {
-            date.setDate(date.getDate() + 1);
-            dates.push(new Date(date));
-        }
-
-        return dates;
-    };
-    
-    const { isPlannerOpen } = useContext(Context);                      //Tracks which nav button is selected
+    const { isPlannerOpen, todaysDate } = useContext(Context);          //Tracks which nav button is selected
     const [isVisible, setIsVisible] = useState(isPlannerOpen);          //Used to track wether page is hidden, if so don't render content
-    const dates = useRef(generateDates());                              //Ref used to not re-calculate dates
+    const dates = useRef(generateDates(new Date(todaysDate)));          //Ref used to not re-calculate dates
     const visibilityClass = isPlannerOpen ? "fade-in" : "fade-out";
 
     //Function called whenever the user changes which page they are on

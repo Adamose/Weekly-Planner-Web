@@ -81,8 +81,8 @@ function TaskModal() {
     //Function to set initial date value when modal gets opened by another component
     useEffect(() => {
         if (taskModalDate === undefined) {
-            setSelectedDate(undefined);
-            setTaskDateString("");
+            setSelectedDate(null);
+            setTaskDateString("Future task");
         } else {
             setSelectedDate(dayjs(taskModalDate));
             setTaskDateString(`${taskModalDate.getMonth() + 1}-${taskModalDate.getDate()}-${taskModalDate.getFullYear()}`);
@@ -135,7 +135,8 @@ function TaskModal() {
                     showToday={false}
                     format="M-D-YYYY"
                     size="large"
-                    placeholder="Enter task's date"
+                    placeholder={selectedDate ? "Enter task's date" : "Future task"}
+                    disabled={selectedDate ? false : true}
                     value={selectedDate}
                     inputReadOnly={true}
                     disabledDate={disabledDate}
