@@ -23,7 +23,7 @@ function FutureTasksCard() {
                 <div className="card-title">
                     <MinusOutlined className="card-title-icon" onClick={() => deleteTasks("Future task")} />
                     <h3 className="card-date">Future Tasks</h3>
-                    <PlusOutlined className="card-title-icon" onClick={() => openTaskModal(true)} />
+                    <PlusOutlined className="card-title-icon" onClick={() => openTaskModal(true, null)} />
                 </div>
                 
                 <ul className="tasks-card-list">
