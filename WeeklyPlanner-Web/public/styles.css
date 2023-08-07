@@ -1,14 +1,14 @@
 body {
-    margin: 0px;
-    background: rgb(186, 144, 198);
+    --lavender: #e2caf7;
+    --white: #fdf2fa;
+    --purple: #a93dc7;
+    margin: 0;
+    background: var(--lavender);
     background: linear-gradient(180deg, var(--purple) 5%, var(--lavender) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
     text-rendering: optimizeLegibility;
-    --lavender: #e2caf7;
-    --white: #fdf2fa;
-    --purple: #a93dc7;
 }
 
 header {
@@ -275,11 +275,13 @@ header {
 .fade-in {
     opacity: 1;
     transition: opacity 1s ease-in;
+    will-change: opacity;
 }
 
 .fade-out {
     opacity: 0;
     transition: opacity 0.5s ease-in;
+    will-change: opacity;
     pointer-events: none;
 }
 
