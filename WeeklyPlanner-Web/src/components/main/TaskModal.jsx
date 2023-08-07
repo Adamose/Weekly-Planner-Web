@@ -89,6 +89,20 @@ function TaskModal() {
         }
     }, [taskModalDate]);
 
+    //Function used to disable dates in date picker component
+    const disabledDate = (date) => {
+        //Return if date is undefined
+        if (!date) 
+            return false;
+        //Disabling overdue dates
+        if (date < dayjs().startOf("day"))
+            return true;
+        //Disabling dates farther than two weeks ahead
+        if (date >= dayjs().add(2, "week").startOf("day"))
+            return true;
+        return false;
+    };
+
     return (
         <Modal
             okText="Submit"
@@ -124,6 +138,7 @@ function TaskModal() {
                     placeholder="Enter task's date"
                     value={selectedDate}
                     inputReadOnly={true}
+                    disabledDate={disabledDate}
                 />
 
                 {showError && <Alert message={errorMessage} type="error" showIcon />}
