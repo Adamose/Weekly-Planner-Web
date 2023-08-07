@@ -3,9 +3,14 @@ import { message, notification } from "antd";
 
 export const Context = createContext();
 
+//Getting start of current date
+const today = new Date();
+today.setHours(0,0,0,0);
+
 function GlobalContext({ children }) {
 
     //Global state
+    const [todaysDate] = useState(today);
     const [tasks, setTasks] = useState({});
     const [tasksLoading, setTasksLoading] = useState(false);
     const [showTaskModal, setShowTaskModal] = useState(false);
@@ -140,7 +145,8 @@ function GlobalContext({ children }) {
 
     const exports = {
         tasks, tasksLoading, setTasks, fetchTasks, deleteTask, deleteTasks, showTaskModal,
-        openTaskModal, taskModalDate, notifyFailedRequest, isPlannerOpen, setIsPlannerOpen
+        openTaskModal, taskModalDate, notifyFailedRequest, isPlannerOpen, setIsPlannerOpen,
+        todaysDate
     };
 
     return (
