@@ -30,6 +30,7 @@ header {
     display: flex;
     align-items: center;
     color: var(--white);
+    margin-right: 50px;
 }
 
 .header-title img {
@@ -48,7 +49,7 @@ header {
     font-size: x-large;
     background: none;
     font-weight: 600;
-    transition: 0.5s;
+    transition: width 0.5s;
     border-style: none;
     border-radius: 8px;
     color: var(--white);
@@ -60,7 +61,7 @@ header {
     height: 4px;
     background: var(--white);
     display: block;
-    transition: 0.4s;
+    transition: width 0.4s;
 }
 
 .nav-button:hover {
@@ -83,6 +84,11 @@ header {
 .header-button:hover {
     background-color: var(--lavender) !important;
     color: var(--purple) !important;
+}
+
+.header-button svg {
+    width: 24px;
+    height: 24px;
 }
 
 .modal-menu {
@@ -321,6 +327,7 @@ header {
     text-align: center;
 }
 
+/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 20px;
 }
@@ -340,14 +347,38 @@ header {
     background-color: var(--purple);
 }
 
+/* Medium size screens */
 @media only screen and (max-width: 980px) {
     .tasks-card {
       width: 45%;
     }
+
+    .header-title img {
+        display: none;
+    }
   }
 
+/* Small screens */
 @media only screen and (max-width: 600px) {
+    .day-card,
     .tasks-card {
       width: 90vw;
+    }
+
+    .ant-skeleton-input {
+        width: 70vw !important;
+    }
+
+    .nav-button {
+        padding: 0;
+        margin-right: 10px;
+    }
+
+    .nav-button:hover {
+        background: none;
+    }
+
+    .header-title {
+        margin-right: 20px;
     }
 }

@@ -2,8 +2,9 @@ import { Context } from "../../GlobalContext.jsx"
 import AccountModal from "./AccountModal.jsx";
 import { Button, message } from "antd";
 import { useState, useLayoutEffect, useContext } from "react";
+import { UserOutlined, UserDeleteOutlined } from "@ant-design/icons";
 
-function HeaderButton() {
+function HeaderButton({ showIcon }) {
 
     const [buttonText, setButtonText] = useState("Log-In / Sign-Up");
     const [showAccountModal, setShowAccountModal] = useState(false);
@@ -33,9 +34,15 @@ function HeaderButton() {
         }
     };
 
+    //Checking which icon to show
+    const icon = buttonText === "Log-Out" ? <UserDeleteOutlined /> : <UserOutlined />;
+
     return (
         <>
-            <Button className="header-button" type="primary" size="large" onClick={handleClick}>{buttonText}</Button>
+            <Button className="header-button" type="primary" size="large" onClick={handleClick}>
+                {showIcon ? icon : buttonText}
+            </Button>
+
             <AccountModal showAccountModal={showAccountModal} setShowAccountModal={setShowAccountModal} setButtonText={setButtonText} />
         </>
     );
