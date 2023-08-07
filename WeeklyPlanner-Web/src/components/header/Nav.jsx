@@ -4,12 +4,12 @@ import { useContext, useState } from "react";
 
 function Nav() {
 
-    const { isPlannerOpen, setIsPlannerOpen } = useContext(Context);
-    const [isAnimating, setIsAnimating] = useState(false);                   //Boolean to prevent button click during page switch
+    const { isPlannerOpen, setIsPlannerOpen, tasksLoading } = useContext(Context);
+    const [isAnimating, setIsAnimating] = useState(false);
 
     //Nav buttons click handler
     const handleClick = (boolean) => {
-        if (!isAnimating) {
+        if (!isAnimating && !tasksLoading) {
             setIsPlannerOpen(boolean);
             setIsAnimating(true);
 

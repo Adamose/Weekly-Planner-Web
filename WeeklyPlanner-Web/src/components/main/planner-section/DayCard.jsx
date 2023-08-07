@@ -11,7 +11,7 @@ function DayCard({ dateObject }) {
 
     const { tasks, deleteTasks, tasksLoading, openTaskModal } = useContext(Context);
     const dateString = useRef(`${dateObject.getMonth() + 1}-${dateObject.getDate()}-${dateObject.getFullYear()}`);
-    const cardDate = `${weekdays[dateObject.getDay()]}\n${dateObject.getDate()}/${dateObject.getMonth() + 1}`;
+    const cardDate = `${weekdays[dateObject.getDay()]} ${dateObject.getDate()}/${dateObject.getMonth() + 1}`;
 
     return (
         <div className="day-card">
