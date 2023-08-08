@@ -3,12 +3,18 @@ body {
     --white: #fdf2fa;
     --purple: #a93dc7;
     margin: 0;
-    background: var(--lavender);
-    background: linear-gradient(180deg, var(--purple) 5%, var(--lavender) 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
-    text-rendering: optimizeLegibility;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--purple) 5%, var(--lavender));
+    z-index: -1;
 }
 
 header {
