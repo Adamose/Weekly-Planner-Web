@@ -281,14 +281,12 @@ header {
 
 .fade-in {
     opacity: 1;
-    transition: opacity 1s ease-in;
-    will-change: opacity;
+    transition: opacity 1s ease-out;
 }
 
 .fade-out {
     opacity: 0;
     transition: opacity 0.5s ease-in;
-    will-change: opacity;
     pointer-events: none;
 }
 
@@ -393,5 +391,9 @@ ul::-webkit-scrollbar-track {
 
     .header-title {
         margin-right: 20px;
+    }
+
+    .fade-in {
+        transition: opacity 0.5s ease-out;
     }
 }
